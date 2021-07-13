@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.google.common.base.MoreObjects;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.phoenix.hbase.index.table.HTableInterfaceReference;
 import org.apache.phoenix.hbase.index.util.ImmutableBytesPtr;
@@ -74,6 +75,6 @@ public class MultiIndexWriteFailureException extends IndexWriteException {
 
   @Override
     public String getMessage() {
-        return Objects.firstNonNull(super.getMessage(),"") + " " + FAILURE_MSG + failures;
+        return MoreObjects.firstNonNull(super.getMessage(),"") + " " + FAILURE_MSG + failures;
     }
 }

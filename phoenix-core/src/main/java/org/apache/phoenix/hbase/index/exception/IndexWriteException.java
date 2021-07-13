@@ -19,6 +19,8 @@ package org.apache.phoenix.hbase.index.exception;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.google.common.base.MoreObjects;
 import org.apache.hadoop.hbase.HBaseIOException;
 import org.apache.phoenix.query.QueryServicesOptions;
 
@@ -82,6 +84,6 @@ public IndexWriteException(Throwable cause) {
 
     @Override
     public String getMessage() {
-        return Objects.firstNonNull(super.getMessage(), "") + " " + DISABLE_INDEX_ON_FAILURE_MSG + disableIndexOnFailure + ",";
+        return MoreObjects.firstNonNull(super.getMessage(), "") + " " + DISABLE_INDEX_ON_FAILURE_MSG + disableIndexOnFailure + ",";
     }
 }

@@ -146,16 +146,28 @@ public class TephraTransactionProvider implements PhoenixTransactionProvider {
         }
         
         public void start() {
-            zkClient.startAndWait();
-            txService.startAndWait();            
+            //zkClient.startAndWait();
+            zkClient.startAsync();
+            zkClient.awaitRunning();
+            //txService.startAndWait();
+            txService.startAsync();
+            txService.awaitRunning();
         }
         
         @Override
         public void close() throws IOException {
             try {
-                if (txService != null) txService.stopAndWait();
+                if (txService != null){
+                    //txService.stopAndWait();
+                    txService.stopAsync();
+                    txService.awaitTerminated();
+                }
             } finally {
-                if (zkClient != null) zkClient.stopAndWait();
+                if (zkClient != null) {
+                    //zkClient.stopAndWait();
+                    zkClient.stopAsync();
+                    zkClient.awaitTerminated();
+                }
             }
         }
         
@@ -175,7 +187,9 @@ public class TephraTransactionProvider implements PhoenixTransactionProvider {
         }
         
         public void start() {
-            zkClient.startAndWait();
+            //zkClient.startAndWait();
+            zkClient.startAsync();
+            zkClient.awaitRunning();
         }
         
         public TransactionSystemClient getTransactionClient() {
@@ -184,7 +198,9 @@ public class TephraTransactionProvider implements PhoenixTransactionProvider {
         
         @Override
         public void close() throws IOException {
-            zkClient.stopAndWait();
+            //zkClient.stopAndWait();
+            zkClient.startAsync();
+            zkClient.awaitRunning();
         }
         
     }
