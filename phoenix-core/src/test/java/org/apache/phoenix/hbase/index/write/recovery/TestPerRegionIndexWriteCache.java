@@ -45,11 +45,13 @@ import org.apache.phoenix.hbase.index.table.HTableInterfaceReference;
 import org.apache.phoenix.hbase.index.util.ImmutableBytesPtr;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 
+@Ignore("TODO:: HADOOP_HOME and hadoop.home.dir are unset.")
 public class TestPerRegionIndexWriteCache {
   private static final HBaseTestingUtility TEST_UTIL = new HBaseTestingUtility(); 
   private static TableName tableName = TableName.valueOf("t1");;
